@@ -4,7 +4,6 @@ public class LinkedListUtil {
 
     public Node head = null;
     public Node tail = null;
-    private static int count = 1;
 
     public void toAppend(int data){
         Node newNode = new Node(data);
@@ -46,7 +45,14 @@ public class LinkedListUtil {
         }
     }
 
+    public void pop(){
+        Node temp = head;
+        head = head.next;
+        System.out.println("Removed "+temp.key);
+    }
+
     public void toPrint(){
+        int count = 1;
         Node current = head;
 
         if(head == null){
@@ -67,6 +73,8 @@ public class LinkedListUtil {
         lList.toInsertInFront(56);
         lList.toAppend(70);
         lList.toInsertInBetween(30);
+        lList.toPrint();
+        lList.pop();
         lList.toPrint();
     }
 }
