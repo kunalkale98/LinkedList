@@ -51,6 +51,16 @@ public class LinkedListUtil {
         System.out.println("Removed "+temp.key);
     }
 
+    public void popLast(){
+        Node temp = head;
+        while(temp.next != tail){
+            temp = temp.next;
+        }
+        tail = temp;
+        temp = temp.next;
+        System.out.println("Removed "+temp.key);
+    }
+
     public void toPrint(){
         int count = 1;
         Node current = head;
@@ -59,7 +69,7 @@ public class LinkedListUtil {
             System.out.println("List is empty");
         }
         else{
-            while( current != null ){
+            while( current != tail.next ){
                 System.out.println("Node "+count);
                 count++;
                 System.out.println(current.key+" ");
@@ -74,7 +84,7 @@ public class LinkedListUtil {
         lList.toAppend(70);
         lList.toInsertInBetween(30);
         lList.toPrint();
-        lList.pop();
+        lList.popLast();
         lList.toPrint();
     }
 }
