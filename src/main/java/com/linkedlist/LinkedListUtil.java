@@ -45,6 +45,17 @@ public class LinkedListUtil {
         }
     }
 
+    public int toSearch(int data){
+        Node current = head;
+        int count = 1;
+        while(current.key != 30){
+            current = current.next;
+            count++;
+        }
+        System.out.println(current.key+" is at node "+count);
+        return current.key;
+    }
+
     public void pop(){
         Node temp = head;
         head = head.next;
@@ -76,15 +87,5 @@ public class LinkedListUtil {
                 current = current.next;
             }
         }
-    }
-
-    public static void main(String args[]){
-        LinkedListUtil lList = new LinkedListUtil();
-        lList.toInsertInFront(56);
-        lList.toAppend(70);
-        lList.toInsertInBetween(30);
-        lList.toPrint();
-        lList.popLast();
-        lList.toPrint();
     }
 }
