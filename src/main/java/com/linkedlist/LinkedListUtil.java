@@ -6,7 +6,7 @@ public class LinkedListUtil {
     public Node tail = null;
     private static int count = 1;
 
-    public void toInsertInFront(int data){
+    public void toAppend(int data){
         Node newNode = new Node(data);
 
         if(head == null){
@@ -14,6 +14,18 @@ public class LinkedListUtil {
             tail = newNode;
         }
         else{
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
+
+    public void toInsertInFront(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
             Node tempNode = head;
             head = newNode;
             head.next = tempNode;
@@ -38,9 +50,9 @@ public class LinkedListUtil {
 
     public static void main(String args[]){
         LinkedListUtil lList = new LinkedListUtil();
-        lList.toInsertInFront(70);
-        lList.toInsertInFront(30);
         lList.toInsertInFront(56);
+        lList.toAppend(30);
+        lList.toAppend(70);
         lList.toPrint();
     }
 }
