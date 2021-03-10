@@ -32,6 +32,20 @@ public class LinkedListUtil {
         }
     }
 
+    public void toInsertInBetween(int data){
+        Node newNode = new Node(data);
+
+        if(head == null){
+            head = newNode;
+            tail = newNode;
+        }
+        else{
+            Node temp = head.next;
+            head.next = newNode;
+            newNode.next = temp;
+        }
+    }
+
     public void toPrint(){
         Node current = head;
 
@@ -51,8 +65,8 @@ public class LinkedListUtil {
     public static void main(String args[]){
         LinkedListUtil lList = new LinkedListUtil();
         lList.toInsertInFront(56);
-        lList.toAppend(30);
         lList.toAppend(70);
+        lList.toInsertInBetween(30);
         lList.toPrint();
     }
 }
