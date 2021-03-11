@@ -1,6 +1,6 @@
 package com.linkedlist;
 
-public class LinkedListUtil {
+public class LinkedListUtil<T> {
 
     public Node head;
     public Node tail;
@@ -44,7 +44,7 @@ public class LinkedListUtil {
         }
     }
 
-    public Node toSearch(int data){
+    public Node<T> toSearch(T data){
         if(this.head == null){
             System.out.println("List is empty");
             return this.head;
@@ -56,12 +56,11 @@ public class LinkedListUtil {
                 current = current.next;
                 count++;
             }
-            System.out.println(current.key + " is at node " + count);
             return current;
         }
     }
 
-    public Node insertAfterSearch(int data,Node search){
+    public Node<T> insertAfterSearch(T data,Node search){
         Node newNode = new Node(data);
         Node current =  search;
         Node temp = current.next;
@@ -81,18 +80,20 @@ public class LinkedListUtil {
         }
     }
 
-    public void popLast(){
+    public Node<T> deleteNode(T data){
         if(this.head == null){
             System.out.println("List is empty");
+            return this.head;
         }
         else {
-            Node temp = this.head;
-            while (temp.next != tail) {
-                temp = temp.next;
+            Node current = this.head;
+            while (current.next.key != data) {
+                current = current.next;
             }
-            this.tail = temp;
-            temp = temp.next;
-            System.out.println("Removed " + temp.key);
+            Node temp = current.next;
+            current.next = current.next.next;
+            System.out.println("Removed " +temp.key);
+            return temp;
         }
     }
 
@@ -104,12 +105,22 @@ public class LinkedListUtil {
             System.out.println("List is empty");
         }
         else{
-            while( current != tail.next ){
+            while( current != this.tail.next ){
                 System.out.println("Node "+count);
                 count++;
                 System.out.println(current.key+" ");
                 current = current.next;
             }
         }
+    }
+
+    public void size(){
+        Node current = this.head;
+        int count = 0;
+        while (current != this.tail.next){
+            current = current.next;
+            count ++;
+        }
+        System.out.println("Size of list is "+count);
     }
 }

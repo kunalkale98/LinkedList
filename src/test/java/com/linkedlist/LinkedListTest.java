@@ -28,12 +28,29 @@ public class LinkedListTest {
         lList.toAppend(firstNode);
         lList.toAppend(secondNode);
         lList.toAppend(thirdNode);
-        lList.toPrint();
+        //lList.toPrint();
         Node output = lList.toSearch(30);
         Node newNode = lList.insertAfterSearch(40,output);
-        lList.toPrint();
+        //lList.toPrint();
         boolean result = lList.head.equals(firstNode) && firstNode.next.equals(secondNode)
                 && secondNode.next.equals(newNode) && newNode.next.equals(thirdNode);
         Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenData_ToDeleteMethod_ShouldRemoveData() {
+        Node firstNode = new Node(56);
+        Node secondNode = new Node(30);
+        Node thirdNode = new Node(40);
+        Node fourthNode = new Node(70);
+        LinkedListUtil lList = new LinkedListUtil();
+        lList.toAppend(firstNode);
+        lList.toAppend(secondNode);
+        lList.toAppend(thirdNode);
+        lList.toAppend(fourthNode);
+        lList.toPrint();
+        Node removed = lList.deleteNode(40);
+        Assert.assertEquals(40,removed.key);
+        lList.size();
     }
 }
