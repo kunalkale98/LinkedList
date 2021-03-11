@@ -2,81 +2,105 @@ package com.linkedlist;
 
 public class LinkedListUtil {
 
-    public Node head = null;
-    public Node tail = null;
+    public Node head;
+    public Node tail;
 
-    public void toAppend(int data){
-        Node newNode = new Node(data);
+    public LinkedListUtil(){
+        this.head = null;
+        this.tail = null;
+    }
 
-        if(head == null){
-            head = newNode;
-            tail = newNode;
+    public void toAppend(Node newNode){
+        if(this.head == null && this.tail == null){
+            this.head = newNode;
+            this.tail = newNode;
         }
         else{
-            tail.next = newNode;
-            tail = newNode;
+            this.tail.next = newNode;
+            this.tail = newNode;
         }
     }
 
-    public void toInsertInFront(int data) {
-        Node newNode = new Node(data);
-
-        if (head == null) {
-            head = newNode;
-            tail = newNode;
+    public void toInsertInFront(Node newNode) {
+        if (this.head == null) {
+            this.head = newNode;
+            this.tail = newNode;
         } else {
-            Node tempNode = head;
-            head = newNode;
-            head.next = tempNode;
+            Node tempNode = this.head;
+            this.head = newNode;
+            this.head.next = tempNode;
         }
     }
 
-    public void toInsertInBetween(int data){
-        Node newNode = new Node(data);
-
-        if(head == null){
-            head = newNode;
-            tail = newNode;
+    public void toInsertInBetween(Node newNode){
+        if(this.head == null){
+            this.head = newNode;
+            this.tail = newNode;
         }
         else{
-            Node temp = head.next;
-            head.next = newNode;
+            Node temp = this.head.next;
+            this.head.next = newNode;
             newNode.next = temp;
         }
     }
 
-    public int toSearch(int data){
-        Node current = head;
-        int count = 1;
-        while(current.key != 30){
-            current = current.next;
-            count++;
+    public Node toSearch(int data){
+        if(this.head == null){
+            System.out.println("List is empty");
+            return this.head;
         }
-        System.out.println(current.key+" is at node "+count);
-        return current.key;
+        else {
+            Node current = this.head;
+            int count = 1;
+            while (current.key != data) {
+                current = current.next;
+                count++;
+            }
+            System.out.println(current.key + " is at node " + count);
+            return current;
+        }
+    }
+
+    public Node insertAfterSearch(int data,Node search){
+        Node newNode = new Node(data);
+        Node current =  search;
+        Node temp = current.next;
+        current.next = newNode;
+        newNode.next = temp;
+        return current.next;
     }
 
     public void pop(){
-        Node temp = head;
-        head = head.next;
-        System.out.println("Removed "+temp.key);
+        if(this.head == null){
+            System.out.println("List is empty");
+        }
+        else {
+            Node temp = this.head;
+            this.head = this.head.next;
+            System.out.println("Removed " + temp.key);
+        }
     }
 
     public void popLast(){
-        Node temp = head;
-        while(temp.next != tail){
-            temp = temp.next;
+        if(this.head == null){
+            System.out.println("List is empty");
         }
-        tail = temp;
-        temp = temp.next;
-        System.out.println("Removed "+temp.key);
+        else {
+            Node temp = this.head;
+            while (temp.next != tail) {
+                temp = temp.next;
+            }
+            this.tail = temp;
+            temp = temp.next;
+            System.out.println("Removed " + temp.key);
+        }
     }
 
     public void toPrint(){
         int count = 1;
-        Node current = head;
+        Node current = this.head;
 
-        if(head == null){
+        if(this.head == null){
             System.out.println("List is empty");
         }
         else{

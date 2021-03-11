@@ -6,13 +6,34 @@ import org.junit.Test;
 public class LinkedListTest {
 
     @Test
-    public void given_Data_InSearchMethod_Should_Return_Data() {
+    public void givenData_InSearchMethod_ShouldReturnData() {
+        Node firstNode = new Node(56);
+        Node secondNode = new Node(30);
+        Node thirdNode = new Node(70);
         LinkedListUtil lList = new LinkedListUtil();
-        lList.toAppend(56);
-        lList.toAppend(30);
-        lList.toAppend(70);
+        lList.toAppend(firstNode);
+        lList.toAppend(secondNode);
+        lList.toAppend(thirdNode);
         lList.toPrint();
-        int output = lList.toSearch(30);
-        Assert.assertEquals(30,output);
+        Node output = lList.toSearch(30);
+        Assert.assertEquals(30,output.key);
+    }
+
+    @Test
+    public void givenData_ToInsertAfterSearch_ShouldReturnSequence() {
+        Node firstNode = new Node(56);
+        Node secondNode = new Node(30);
+        Node thirdNode = new Node(70);
+        LinkedListUtil lList = new LinkedListUtil();
+        lList.toAppend(firstNode);
+        lList.toAppend(secondNode);
+        lList.toAppend(thirdNode);
+        lList.toPrint();
+        Node output = lList.toSearch(30);
+        Node newNode = lList.insertAfterSearch(40,output);
+        lList.toPrint();
+        boolean result = lList.head.equals(firstNode) && firstNode.next.equals(secondNode)
+                && secondNode.next.equals(newNode) && newNode.next.equals(thirdNode);
+        Assert.assertTrue(result);
     }
 }
