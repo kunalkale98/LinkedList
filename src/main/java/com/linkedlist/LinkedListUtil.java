@@ -1,6 +1,6 @@
 package com.linkedlist;
 
-public class LinkedListUtil<T> {
+public class LinkedListUtil {
 
     public Node head;
     public Node tail;
@@ -44,7 +44,7 @@ public class LinkedListUtil<T> {
         }
     }
 
-    public Node<T> toSearch(T data){
+    public <T extends Comparable> Node<T> toSearch(T data){
         if(this.head == null){
             System.out.println("List is empty");
             return this.head;
@@ -60,7 +60,7 @@ public class LinkedListUtil<T> {
         }
     }
 
-    public Node<T> insertAfterSearch(T data,Node search){
+    public <T extends Comparable> Node<T> insertAfterSearch(T data, Node search){
         Node newNode = new Node(data);
         Node current =  search;
         Node temp = current.next;
@@ -80,7 +80,7 @@ public class LinkedListUtil<T> {
         }
     }
 
-    public Node<T> deleteNode(T data){
+    public <T extends Comparable> Node<T> deleteNode(T data){
         if(this.head == null){
             System.out.println("List is empty");
             return this.head;
@@ -105,12 +105,28 @@ public class LinkedListUtil<T> {
             System.out.println("List is empty");
         }
         else{
-            while( current != this.tail.next ){
+            while( current != null ){
                 System.out.println("Node "+count);
                 count++;
                 System.out.println(current.key+" ");
                 current = current.next;
             }
+        }
+    }
+
+    public void orderedList(Node newNode){
+        if (this.head == null || this.head.key.compareTo(newNode.key) >= 0) {
+            newNode.next = this.head;
+            this.head = newNode;
+            this.tail = newNode;
+        }
+        else {
+            Node current = this.head;
+            while (current.next != null && current.next.key.compareTo(newNode.key) < 0) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
         }
     }
 

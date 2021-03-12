@@ -7,9 +7,9 @@ public class LinkedListTest {
 
     @Test
     public void givenData_InSearchMethod_ShouldReturnData() {
-        Node firstNode = new Node(56);
-        Node secondNode = new Node(30);
-        Node thirdNode = new Node(70);
+        Node<Integer> firstNode = new Node(56);
+        Node<Integer> secondNode = new Node(30);
+        Node<Integer> thirdNode = new Node(70);
         LinkedListUtil lList = new LinkedListUtil();
         lList.toAppend(firstNode);
         lList.toAppend(secondNode);
@@ -21,9 +21,9 @@ public class LinkedListTest {
 
     @Test
     public void givenData_ToInsertAfterSearch_ShouldReturnSequence() {
-        Node firstNode = new Node(56);
-        Node secondNode = new Node(30);
-        Node thirdNode = new Node(70);
+        Node<Integer> firstNode = new Node(56);
+        Node<Integer> secondNode = new Node(30);
+        Node<Integer> thirdNode = new Node(70);
         LinkedListUtil lList = new LinkedListUtil();
         lList.toAppend(firstNode);
         lList.toAppend(secondNode);
@@ -39,10 +39,10 @@ public class LinkedListTest {
 
     @Test
     public void givenData_ToDeleteMethod_ShouldRemoveData() {
-        Node firstNode = new Node(56);
-        Node secondNode = new Node(30);
-        Node thirdNode = new Node(40);
-        Node fourthNode = new Node(70);
+        Node<Integer> firstNode = new Node(56);
+        Node<Integer> secondNode = new Node(30);
+        Node<Integer> thirdNode = new Node(40);
+        Node<Integer> fourthNode = new Node(70);
         LinkedListUtil lList = new LinkedListUtil();
         lList.toAppend(firstNode);
         lList.toAppend(secondNode);
@@ -52,5 +52,22 @@ public class LinkedListTest {
         Node removed = lList.deleteNode(40);
         Assert.assertEquals(40,removed.key);
         lList.size();
+    }
+
+    @Test
+    public void givenData_ToSortMethod_ShouldReturnOrderedList() {
+        Node<Integer> firstNode = new Node(56);
+        Node<Integer> secondNode = new Node(30);
+        Node<Integer> thirdNode = new Node(40);
+        Node<Integer> fourthNode = new Node(70);
+        LinkedListUtil lList = new LinkedListUtil();
+        lList.orderedList(firstNode);
+        lList.orderedList(secondNode);
+        lList.orderedList(thirdNode);
+        lList.orderedList(fourthNode);
+        boolean result = lList.head.equals(secondNode) && secondNode.next.equals(thirdNode)
+                && thirdNode.next.equals(firstNode) && firstNode.next.equals(fourthNode);
+        Assert.assertTrue(result);
+        lList.toPrint();
     }
 }
